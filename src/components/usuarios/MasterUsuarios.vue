@@ -226,7 +226,7 @@
 
       /**
        * Método para cadastrar, faz as validações do CPF e do E-mail.
-       * @param {object} registro - Texto da mensagem
+       * @param {object} registro - Objeto com dados do formulário
        */
       cadastrar(registro) {
         this.limparMsgAlert();      
@@ -236,7 +236,10 @@
         } else if (!this.validarEmail(registro.email)){
             this.exibirMsgAlert("O E-Mail informado é inválido!", "erro");
             return;    
-        }     
+        } else if (registro.name.trim() == '') {
+            this.exibirMsgAlert("Informe um nome!", "erro");
+            return; 
+        }    
           this.$usuarioService.adicionar(registro).then(response => {          
             if(!this.verificarRetornoHttp(response)){
               this.limparForm();
@@ -325,7 +328,10 @@
         this.limparMsgAlert();      
         if (!validarCpf(registro.cpf)) {
           this.exibirMsgAlert("O CPF informado é inválido!", "erro");
-          return;        
+          return;
+        } else if (registro.name.trim() == '') {
+            this.exibirMsgAlert("Informe um nome!", "erro");
+            return;         
         } else if (!this.validarEmail(registro.email)) {
           this.exibirMsgAlert("O E-Mail informado é inválido.", "erro");
           return;    

@@ -39,7 +39,7 @@ const routes =
   }
 ]
 
-//Passando as rotas ao VueRouter
+//Definindo o modo de Navegaçao das rotas do VueRouter e criando as rotas
 const router = new VueRouter({ mode: 'history', routes: routes });
 
 //Renderizando com o Vue
